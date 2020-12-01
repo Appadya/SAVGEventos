@@ -1,0 +1,39 @@
+<template>
+  <b-navbar id="navigation" toggleable="md" type="dark">
+    <b-navbar-brand class="d-md-none">
+      <router-link to="/">
+        <img class="navbar-logo" src="@/assets/logo.png" alt="SAVGE Logo" />
+      </router-link>
+    </b-navbar-brand>
+    <b-navbar-toggle target="collapse"></b-navbar-toggle>
+    <b-collapse id="collapse" is-nav>
+      <b-navbar-nav>
+        <b-nav-item>
+          <router-link to="/"><i class="fas fa-home"></i> Home</router-link>
+        </b-nav-item>
+        <b-nav-item>
+          <router-link to="/map"
+            ><i class="fas fa-map-marked-alt"></i> Mapa</router-link
+          >
+        </b-nav-item>
+      </b-navbar-nav>
+      <b-navbar-nav class="d-none d-md-block mx-auto">
+        <router-link to="/">
+          <img class="navbar-logo" src="@/assets/logo.png" alt="SAVGE Logo" />
+        </router-link>
+      </b-navbar-nav>
+      <b-navbar-nav>
+        <b-nav-item href="#about-us"
+          ><i class="fas fa-info"></i> Sobre</b-nav-item
+        >
+        <b-nav-item><i class="fas fa-sign-in-alt"></i> Logar</b-nav-item>
+      </b-navbar-nav>
+    </b-collapse>
+  </b-navbar>
+</template>
+
+<script>
+export default {
+  name: "Navigation",
+};
+</script>

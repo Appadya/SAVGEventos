@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
+
+:root{
+    --primary-color: #08404F;
+    --primary-color-transparent: #08404f83;
+    --secondary-color: #EDEDED;
+    --primary-content-color: #f1f9f9;
+    --secondary-content-color: #ecfcff;
+    --nav-link-color: #2ec1ac;
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    background-color: var(--secondary-color);
+    font-family: 'Maven Pro', sans-serif;
+}
+#map-nav {
+    background-color: var(--primary-color-transparent);
+}
+#navigation{
+    background-color: var(--primary-color-transparent);
+    position: fixed;
+    width: 100%;
+    z-index: 20;
+}
+#navigation .navbar-logo {
+    width: 50px;
+}
+#navigation a {
+    color: #f8f9fa;
+}
+#navigation a.router-link-exact-active {
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    color: var(--nav-link-color);
+}
+.primary-contents{
+    background-color: var(--primary-content-color);
+}
+.secondary-contents{
+    background-color: var(--secondary-content-color);
+}
+#cards {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 50vh;
+}
+#gmap {
+    width: 100%;
+    height: 100vh;
+}
+#footer{
+    background-color: var(--primary-color);
+}
+.w-100 {
+    width: 100%;
+}
+.vh-90 {
+    height: 90vh !important;
+}
+#header-image {
+    background-image: url('../joaopessoa.jpg');
+}
+.border-shadow{
+    box-shadow: 0px 0px 10px #0000002c;
+}
+#contact-text {
+    background-color: #74B69E;
+    text-align: center;
+}
+#twitter-button {
+    background-color: #96DAE3;
+    text-align: center;
+}
+#facebook-button {
+    background-color: #3D5C95;
+    text-align: center;
+}
+#linkedin-button {
+    background-color: #2D6188;
+    text-align: center;
+}
