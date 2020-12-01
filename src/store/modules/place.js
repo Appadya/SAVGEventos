@@ -10,19 +10,9 @@ getters = {
     foundPlacePhoto: state => state.placePhoto
 },
 actions = {
-    // getNearbyPlacesByType({ commit }, { lat, long, search }){
-    //     console.log(lat, long, search);
-    //     axios.get(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${long}&radius=1500&type=${search}&key=${API_KEY}`)
-    //     .then(response => {
-    //         console.log(response.data.results);
-    //         commit('getNearbyPlacesByType', response.data.results);
-    //     })
-    // },
     getNearbyPlacesByText({ commit }, { lat, long, search }){
-        console.log(search)
         axios.get(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?location=${lat},${long}&radius=1500&query=${search}&key=${API_KEY}`)
         .then(response => {
-            console.log(JSON.stringify(response.data.results));
             commit('getNearbyPlacesByText', response.data.results);
         }).catch(() => commit('getNearbyPlacesByText', false))
     },
