@@ -1,8 +1,16 @@
 # savgeventos
 
+## Firebase
+Em breve...
+
 ## Project setup
 ```
 npm install
+```
+
+## Erros com o mapa?
+```
+npm i vue2-google-maps
 ```
 
 ### Compiles and hot-reloads for development
