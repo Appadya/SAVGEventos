@@ -16,6 +16,7 @@ actions = {
             commit('getNearbyPlacesByText', response.data.results);
         }).catch(() => commit('getNearbyPlacesByText', false))
     },
+    // Irei implementar se de tempo..
     getPlacePhoto({ commit }, { photoString }){
         axios.get(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoString}&key=${API_KEY}`)
         .then(response => {
