@@ -2,13 +2,8 @@
   <b-container class="mt-5 mb-5 border-shadow">
     <b-row class="primary-contents">
       <b-col md class="p-5">
-        <h2>Qualquer coisa aqui</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
-          reiciendis, deleniti neque nulla rem modi placeat fugit, dignissimos
-          natus, vitae vel asperiores porro ducimus possimus. Adipisci aliquid
-          natus reiciendis magni?
-        </p>
+        <h2>Imagens em destaque</h2>
+        <Carousel />
       </b-col>
     </b-row>
     <b-row id="about-us" class="secondary-contents">
@@ -38,7 +33,12 @@
   </b-container>
 </template>
 <script>
+import Carousel from '../components/Carousel'
+
 export default {
   name: "Home",
+  components: {
+    Carousel,
+  }
 };
 </script>

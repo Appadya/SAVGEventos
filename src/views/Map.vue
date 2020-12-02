@@ -10,44 +10,39 @@
               :position="place.geometry.location"
             ></gmap-marker>
           </gmap-map>
-          <b-nav id="map-nav" align="center" pills>
-            <b-nav-item>
-              <b-input-group class="w-100 mb-3 mt-2">
-                <b-input
-                  placeholder="Busque aqui"
-                  v-model.lazy="input_entry"
-                  @change="selected = null"
-                >
-                </b-input>
-                <b-input-group-append>
-                  <b-form-select
-                    v-model="selected"
-                    @change="input_entry = ''"
-                    :options="options"
-                  ></b-form-select>
-                  <b-button type="submit" @click="search">Procurar</b-button>
-                </b-input-group-append>
-              </b-input-group>
-            </b-nav-item>
-            <b-nav-item>
-              <b-dropdown
-                id="dropdown"
-                text="Ordenar por"
-                variant="dark"
-                class="m-2"
-              >
-                <b-dropdown-item @click="mostRatedPlaces"
-                  >Melhores avaliações</b-dropdown-item
-                >
-                <b-dropdown-item @click="worstRatedPlaces"
-                  >Piores avaliações</b-dropdown-item
-                >
-              </b-dropdown>
-            </b-nav-item>
-          </b-nav>
         </b-col>
       </b-row>
     </b-container>
+    <b-nav id="map-nav" align="center" pills>
+      <b-nav-item>
+        <b-input-group class="w-100 mb-3 mt-2">
+          <b-input
+            placeholder="Busque aqui"
+            v-model.lazy="input_entry"
+            @change="selected = null"
+          >
+          </b-input>
+          <b-input-group-append>
+            <b-form-select
+              v-model="selected"
+              @change="input_entry = ''"
+              :options="options"
+            ></b-form-select>
+            <b-button type="submit" @click="search">Procurar</b-button>
+          </b-input-group-append>
+        </b-input-group>
+      </b-nav-item>
+      <b-nav-item>
+        <b-dropdown id="dropdown" text="Ordenar por" variant="dark" class="m-2">
+          <b-dropdown-item @click="mostRatedPlaces"
+            >Melhor avaliação</b-dropdown-item
+          >
+          <b-dropdown-item @click="worstRatedPlaces"
+            >Pior avaliação</b-dropdown-item
+          >
+        </b-dropdown>
+      </b-nav-item>
+    </b-nav>
     <b-container fluid>
       <b-row>
         <b-col md>
@@ -99,21 +94,6 @@
                 </b-col>
               </b-row>
             </b-card>
-
-            <!-- <b-card
-            v-for="(place, i) in foundPlaces"
-            :key="i"
-            img-src=""
-            img-alt="Place image"
-            img-left
-            class="mb-3 m-3"
-          >
-            <b-card-title></b-card-title>
-            <b-card-text>
-              Some quick example text to build on the card and make up the bulk
-              of the card's content.
-            </b-card-text>
-          </b-card> -->
           </div>
         </b-col>
       </b-row>
