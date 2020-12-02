@@ -2,10 +2,14 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 
 const state = {
-    submitResult: null,
+    loggedIn: false,
+    // data: null,
+    submitResponse: null,
+    signInResponse: null,
 },
 getters = {
-    firebaseAuthSubmitResult: state => state.submitResult,
+    firebaseAuthSubmitResponse: state => state.submitResponse,
+    firebaseAuthSignInResponse: state => state.signInResponse,
 },
 actions = {
     firebaseAuthSubmit({ commit }, { username, email, password }) {
@@ -22,9 +26,21 @@ actions = {
                 commit('firebaseAuthSubmit', false);
             });
     },
+    firebaseAuthSignIn({ commit }, { email, password }){
+        firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(() => {
+            commit('firebaseAuthSignIn', { name: 'Dashboard' }, true);
+        })
+        .catch(() => {
+            commit('firebaseAuthSignIn', null, false)
+        })
+    },
 },
 mutations = {
-    firebaseAuthSubmit: (state, data) => state.submitResult = data,
+    firebaseAuthSubmit: (state, data) => state.submitResponse = data,
+    firebaseAuthSignIn: (state, data) => state.signInResponse = data,
 }
 
 export default {

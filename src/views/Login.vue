@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1>{{ firebaseAuthSubmitResult }}</h1>
+    <h1>{{ firebaseAuthSubmitResponse }}</h1>
 
-    <b-form inline>
+    <b-form @submit.prevent="submit" inline>
       <b-input-group prepend="Nome">
         <b-form-input
           v-model.lazy="username"
@@ -21,10 +21,11 @@
       <b-button-group>
         <b-button
           variant="primary"
+          type="submit"
           @click="firebaseAuthSubmit({username, email, password})"
           >Registrar</b-button
         >
-        <b-button variant="primary">Logar</b-button>
+        <b-button @click="firebaseAuthSignIn({ email, password })" type="submit" variant="primary">Logar</b-button>
       </b-button-group>
     </b-form>
   </div>
@@ -43,10 +44,12 @@ export default {
     };
   },
   computed: {
-      ...mapGetters(['firebaseAuthSubmitResult']),
+      ...mapGetters(['firebaseAuthSubmitResponse']),
+      ...mapGetters(['firebaseAuthSignInResponse']),
   },
   methods: {
     ...mapActions(["firebaseAuthSubmit"]),
+    ...mapActions(["firebaseAuthSignIn"])
   },
 };
 </script>
