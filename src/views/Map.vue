@@ -34,6 +34,8 @@
       </b-nav-item>
       <b-nav-item>
         <b-dropdown id="dropdown" text="Ordenar por" variant="dark" class="m-2">
+          <b-dropdown-item>Menor preço</b-dropdown-item>
+          <b-dropdown-item>Maior preço</b-dropdown-item>
           <b-dropdown-item @click="mostRatedPlaces"
             >Melhor avaliação</b-dropdown-item
           >
