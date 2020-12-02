@@ -6,9 +6,14 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-import '@/assets/css/index.css'
+import './assets/css/index.css'
 
 import * as VueGoogleMaps from 'vue2-google-maps'
+import firebase from 'firebase/app'
+
+firebase.initializeApp(require('./firebase-config.json'));
+
+Vue.config.productionTip = false
 
 Vue.use(VueGoogleMaps, {
   load: {
@@ -16,8 +21,6 @@ Vue.use(VueGoogleMaps, {
     libraries: 'places'
   }
 });
-
-Vue.config.productionTip = false
 
 new Vue({
   router,

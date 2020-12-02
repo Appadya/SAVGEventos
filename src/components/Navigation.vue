@@ -26,7 +26,9 @@
         <b-nav-item href="#about-us"
           ><i class="fas fa-info"></i> Sobre</b-nav-item
         >
-        <b-nav-item><i class="fas fa-sign-in-alt"></i> Logar</b-nav-item>
+        <b-nav-item>
+          <router-link to="/login"><i class="fas fa-sign-in-alt"></i> Logar</router-link>
+        </b-nav-item>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
