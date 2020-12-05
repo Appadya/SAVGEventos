@@ -12,7 +12,10 @@
         <b-form-input v-model.lazy="form.email"></b-form-input>
       </b-input-group>
       <b-input-group prepend="Password" class="mb-2 mr-sm-2 mb-sm-0">
-        <b-form-input v-model.lazy="form.password" type="password"></b-form-input>
+        <b-form-input
+          v-model.lazy="form.password"
+          type="password"
+        ></b-form-input>
       </b-input-group>
 
       <b-form-checkbox class="mb-2 mr-sm-2 mb-sm-0">Lembrar</b-form-checkbox>
@@ -50,7 +53,7 @@ export default {
         firebase.auth
           .signInWithEmailAndPassword(this.form.email, this.form.password)
           .then(() => {
-            this.$router.replace({ name: 'Profile' });
+            this.$router.push({ name: "Profile" });
           })
           .catch((err) => {
             this.error = err.message;
@@ -59,20 +62,22 @@ export default {
         firebase.auth
           .createUserWithEmailAndPassword(this.form.email, this.form.password)
           .then((data) => {
-            data.user.updateProfile({ displayName: this.form.username })
-            .then(() => {
-              firebase.db.collection('savge_users')
-                .doc(this.form.email)
-                .set({
-                  username: this.form.username
-                })
-                .then(() => {
-                  this.$router.replace({ name: 'Profile' });
-                })
-            })
-            .catch((err) => {
-              this.error = err.message;
-            })
+            data.user
+              .updateProfile({ displayName: this.form.username })
+              .then(() => {
+                firebase.db
+                  .collection("savge_users")
+                  .doc(this.form.email)
+                  .set({
+                    username: this.form.username,
+                  })
+                  .then(() => {
+                    this.$router.push("/profile");
+                  });
+              })
+              .catch((err) => {
+                this.error = err.message;
+              });
           });
       }
     },

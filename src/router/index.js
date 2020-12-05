@@ -5,6 +5,11 @@ import { auth } from "../firebase/firebase";
 
 Vue.use(VueRouter)
 
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function(location){
+  return originalPush.call(this, location).catch(e => e);
+}
+
 const routes = [
   {
     path: '/',
@@ -42,7 +47,7 @@ router.beforeEach((to, from, next) => {
     next('/login')
   } else {
     next()
-  }
+  } 
 })
 
 export default router
