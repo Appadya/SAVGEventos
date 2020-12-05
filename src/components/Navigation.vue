@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import * as firebase from "../firebase/firebase";
+import { FirebaseManager } from "../firebase/firebase";
 import { mapGetters } from "vuex";
 
 export default {
@@ -54,13 +54,10 @@ export default {
   },
   methods: {
     signOut() {
-      firebase.auth.signOut().then(() => {
-        this.$router.push({ name: "Login" });
-      });
+      FirebaseManager.logOutUser((response) => {
+        if(response) this.$router.push({ name: "Login" });
+      })
     },
   },
-  created(){
-    console.log(this.user.loggedIn)
-  }
 };
 </script>

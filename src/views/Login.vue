@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import * as firebase from "../firebase/firebase";
+import { FirebaseManager } from "../firebase/firebase";
 
 export default {
   name: "Login",
@@ -50,35 +50,30 @@ export default {
   methods: {
     submit(isLogin) {
       if (isLogin) {
-        firebase.auth
-          .signInWithEmailAndPassword(this.form.email, this.form.password)
-          .then(() => {
-            this.$router.push({ name: "Profile" });
-          })
-          .catch((err) => {
-            this.error = err.message;
-          });
+        FirebaseManager.loginUser(
+          this.form.email,
+          this.form.password,
+          (response, result) => {
+            if (response) {
+              this.$router.push({ name: "Profile" });
+            } else {
+              this.error = result;
+            }
+          }
+        );
       } else {
-        firebase.auth
-          .createUserWithEmailAndPassword(this.form.email, this.form.password)
-          .then((data) => {
-            data.user
-              .updateProfile({ displayName: this.form.username })
-              .then(() => {
-                firebase.db
-                  .collection("savge_users")
-                  .doc(this.form.email)
-                  .set({
-                    username: this.form.username,
-                  })
-                  .then(() => {
-                    this.$router.push({ name: "Profile" });
-                  });
-              })
-              .catch((err) => {
-                this.error = err.message;
-              });
-          });
+        FirebaseManager.registerUser(
+          this.form.username,
+          this.form.email,
+          this.form.password,
+          (response, result) => {
+            if (response) {
+              this.$router.push({ name: "Profile" });
+            } else {
+              this.error = result;
+            }
+          }
+        );
       }
     },
   },
