@@ -26,7 +26,6 @@
         <b-nav-item href="#about-us"
           ><i class="fas fa-info"></i> Sobre</b-nav-item
         >
-        <!-- Não sei porque ele não está atualizando o loggedIn, mesmo no computed... -->
         <b-nav-item>
           <router-link v-if="user.loggedIn" to="/profile"
             ><i class="fas fa-user"></i> Perfil
