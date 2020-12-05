@@ -17,16 +17,10 @@
 
       <b-form-checkbox class="mb-2 mr-sm-2 mb-sm-0">Lembrar</b-form-checkbox>
       <b-button-group>
-        <b-button
-          variant="primary"
-          type="submit"
-          @click="firebaseAuthSubmit({ username, email, password })"
+        <b-button variant="primary" type="submit" @click="submit(false)"
           >Registrar</b-button
         >
-        <b-button
-          @click="firebaseAuthSignIn({ email, password })"
-          type="submit"
-          variant="primary"
+        <b-button @click="submit(true)" type="submit" variant="primary"
           >Logar</b-button
         >
       </b-button-group>
@@ -52,15 +46,37 @@ export default {
   },
   computed: {},
   methods: {
-    submit(){
-      firebase.auth.sigInWithEmailAndPassword(this.form.email, this.form.password)
-      .then(() => {
-        this.$router.replace({ name: "Profile" });
-      })
-      .catch((err) => {
-        this.error = err.message;
-      })
-    }
+    submit(isLogin) {
+      if (isLogin) {
+        firebase.auth
+          .sigInWithEmailAndPassword(this.form.email, this.form.password)
+          .then(() => {
+            this.$router.replace({ name: "Profile" });
+          })
+          .catch((err) => {
+            this.error = err.message;
+          });
+      } else {
+        firebase.auth
+          .createUserWithEmailAndPassword(this.form.email, this.form.password)
+          .then((data) => {
+            data.user.updateProfile({ displayName: this.form.username })
+            .then(() => {
+              firebase.db.collection('savge_users')
+                .doc(this.form.email)
+                .set({
+                  username: this.form.username
+                })
+                .then(() => {
+                  this.$router.replace({ name: "Profile" });
+                })
+            })
+            .catch((err) => {
+              this.error = err.message;
+            })
+          });
+      }
+    },
   },
 };
 </script>
