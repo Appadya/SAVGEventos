@@ -31,11 +31,5 @@ auth.onAuthStateChanged((user) => {
   }
 
   store.dispatch('fetchUser', user);
-  // if(user){
-  //   console.log(user)
-  //   store.dispatch('fetchUser', user);
-  // } else {
-  //   console.log(user)
-  // }
 })
 
