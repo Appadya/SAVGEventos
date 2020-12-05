@@ -166,15 +166,6 @@ export default {
       );
     },
   },
-  // watch: {
-  //   center(){
-  //     this.getPlaces({
-  //       lat: this.center.lat,
-  //       long: this.center.lng,
-  //       search: "tourist_attraction",
-  //     });
-  //   }
-  // },
   mounted() {
     this.geolocate();
   },
