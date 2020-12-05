@@ -27,7 +27,8 @@
           ><i class="fas fa-info"></i> Sobre</b-nav-item
         >
         <b-nav-item>
-          <router-link to="/login"><i class="fas fa-sign-in-alt"></i> Logar</router-link>
+          <router-link v-if="user.loggedIn" to="/profile"><i class="fas fa-user"></i> Perfil</router-link>
+          <router-link v-if="!user.loggedIn" to="/login"><i class="fas fa-sign-in-alt"></i> Logar</router-link>
         </b-nav-item>
       </b-navbar-nav>
     </b-collapse>
@@ -35,7 +36,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: "Navigation",
+  computed: {
+    ...mapGetters(['user'])
+  }
 };
 </script>

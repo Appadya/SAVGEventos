@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import auth from '../store/modules/auth'
 import Home from '../views/Home.vue'
 import { auth } from "../firebase/firebase";
 

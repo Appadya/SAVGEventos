@@ -10,9 +10,6 @@ import { auth } from "./firebase/firebase";
 import './assets/css/index.css'
 
 import * as VueGoogleMaps from 'vue2-google-maps'
-import firebase from 'firebase/app'
-
-firebase.initializeApp(require('./firebase-config.json'));
 
 Vue.config.productionTip = false
 
