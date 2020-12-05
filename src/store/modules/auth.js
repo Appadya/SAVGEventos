@@ -9,12 +9,15 @@ const state = {
     },
     actions = {
         fetchUser({ commit }, user) {
-            console.log(user !== null)
-            commit('SET_LOGGED_IN', user !== null);
-            if (user) {
-                commit('SET_USER', { displayName: user.displayName, email: user.email })
+            if (user !== null) {
+                commit('SET_LOGGED_IN', true);
+                if (user) {
+                    commit('SET_USER', { displayName: user.displayName, email: user.email })
+                } else {
+                    commit('SET_USER', null)
+                }
             } else {
-                commit('SET_USER', null)
+                commit('SET_LOGGED_IN', false);
             }
         }
     },

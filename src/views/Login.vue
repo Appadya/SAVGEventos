@@ -72,7 +72,7 @@ export default {
                     username: this.form.username,
                   })
                   .then(() => {
-                    this.$router.push("/profile");
+                    this.$router.push({ name: "Profile" });
                   });
               })
               .catch((err) => {

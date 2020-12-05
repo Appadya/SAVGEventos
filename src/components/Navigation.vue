@@ -55,9 +55,12 @@ export default {
   methods: {
     signOut() {
       firebase.auth.signOut().then(() => {
-        this.$router.replace({ name: "Login" });
+        this.$router.push({ name: "Login" });
       });
     },
   },
+  created(){
+    console.log(this.user.loggedIn)
+  }
 };
 </script>
