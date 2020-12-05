@@ -5,6 +5,7 @@ import './plugins/bootstrap-vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import { auth } from "./firebase/firebase";
 
 import './assets/css/index.css'
 
@@ -22,8 +23,16 @@ Vue.use(VueGoogleMaps, {
   }
 });
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+let app
+auth.onAuthStateChanged((user) => {
+  if(!app){
+    new Vue({
+      router,
+      store,
+      render: h => h(App)
+    }).$mount('#app')
+  }
+
+  if(user) store.dispatch('fetchUser', user);
+})
+

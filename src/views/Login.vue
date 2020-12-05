@@ -1,14 +1,12 @@
 <template>
   <div>
-    <h1>{{ firebaseAuthSubmitResponse }}</h1>
-
     <b-form @submit.prevent="submit" inline>
-      <b-input-group prepend="Nome">
+      <!-- <b-input-group prepend="Nome">
         <b-form-input
           v-model.lazy="username"
           class="mb-2 mr-sm-2 mb-sm-0"
         ></b-form-input>
-      </b-input-group>
+      </b-input-group> -->
 
       <b-input-group prepend="Email" class="mb-2 mr-sm-2 mb-sm-0">
         <b-form-input v-model.lazy="email"></b-form-input>
@@ -22,34 +20,47 @@
         <b-button
           variant="primary"
           type="submit"
-          @click="firebaseAuthSubmit({username, email, password})"
+          @click="firebaseAuthSubmit({ username, email, password })"
           >Registrar</b-button
         >
-        <b-button @click="firebaseAuthSignIn({ email, password })" type="submit" variant="primary">Logar</b-button>
+        <b-button
+          @click="firebaseAuthSignIn({ email, password })"
+          type="submit"
+          variant="primary"
+          >Logar</b-button
+        >
       </b-button-group>
     </b-form>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex"
+import * as firebase from "../firebase/firebase";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "Login",
   data() {
     return {
-      username: null,
-      email: null,
-      password: null,
+      form: {
+        username: "",
+        email: "",
+        password: "",
+      },
+      error: null,
     };
   },
-  computed: {
-      ...mapGetters(['firebaseAuthSubmitResponse']),
-      ...mapGetters(['firebaseAuthSignInResponse']),
-  },
+  computed: {},
   methods: {
-    ...mapActions(["firebaseAuthSubmit"]),
-    ...mapActions(["firebaseAuthSignIn"])
+    submit(){
+      firebase.auth.sigInWithEmailAndPassword(this.form.email, this.form.password)
+      .then(() => {
+        this.$router.replace({ name: "Profile" });
+      })
+      .catch((err) => {
+        this.error = err.message;
+      })
+    }
   },
 };
 </script>
