@@ -50,7 +50,7 @@ export default {
         firebase.auth
           .signInWithEmailAndPassword(this.form.email, this.form.password)
           .then(() => {
-            this.$router.replace({ name: "Profile" });
+            this.$router.replace({ name: 'Profile' });
           })
           .catch((err) => {
             this.error = err.message;
@@ -67,7 +67,7 @@ export default {
                   username: this.form.username
                 })
                 .then(() => {
-                  this.$router.replace({ name: "Profile" });
+                  this.$router.replace({ name: 'Profile' });
                 })
             })
             .catch((err) => {
