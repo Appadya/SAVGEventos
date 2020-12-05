@@ -48,7 +48,7 @@ export default {
     submit(isLogin) {
       if (isLogin) {
         firebase.auth
-          .sigInWithEmailAndPassword(this.form.email, this.form.password)
+          .signInWithEmailAndPassword(this.form.email, this.form.password)
           .then(() => {
             this.$router.replace({ name: "Profile" });
           })
