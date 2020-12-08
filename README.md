@@ -1,7 +1,9 @@
 # savgeventos
 
 ## Firebase
-Em breve...
+```
+npm install firebase
+```
 
 ## Project setup
 ```
