@@ -62,7 +62,7 @@
           <b-row no-gutters>
             <b-col>
               <b-card-img
-                src="https://cdn.discordapp.com/attachments/418417396953382924/783469550909521960/unknown.png"
+                src="https://www.nasa.gov/sites/default/files/thumbnails/image/ksc-20180226-vab.jpg"
                 alt="Image"
                 class="rounded-0"
               ></b-card-img>
