@@ -1,6 +1,6 @@
 <template>
   <div id="listmap">
-    <b-button class="w-100" variant="primary" v-b-toggle.sidebar-footer
+    <b-button class="w-100 primary" v-b-toggle.sidebar-footer
       >Buscar</b-button
     >
     <b-container fluid>
@@ -16,12 +16,7 @@
         </b-col>
       </b-row>
     </b-container>
-    <b-sidebar
-      id="sidebar-footer"
-      aria-label="Sidebar with custom footer"
-      backdrop
-      shadow
-    >
+    <b-sidebar id="sidebar-footer" aria-label="Locais" backdrop shadow>
       <div>
         <b-input
           placeholder="Busque aqui"
@@ -32,8 +27,7 @@
         <b-dropdown
           id="dropdown"
           text="Ordenar por"
-          variant="dark"
-          class="w-100"
+          class="w-100 primary"
         >
           <b-dropdown-item>Menor preço</b-dropdown-item>
           <b-dropdown-item>Maior preço</b-dropdown-item>
@@ -50,7 +44,7 @@
             @change="input_entry = ''"
             :options="options"
           ></b-form-select>
-          <b-button variant="outline-primary" type="submit" @click="search"
+          <b-button class="primary" type="submit" @click="search"
             ><i class="fas fa-search"></i
           ></b-button>
         </b-input-group-append>
@@ -66,7 +60,12 @@
           no-body
         >
           <b-row no-gutters>
-            <b-col md="9">
+            <b-col>
+              <b-card-img
+                src="https://cdn.discordapp.com/attachments/418417396953382924/783469550909521960/unknown.png"
+                alt="Image"
+                class="rounded-0"
+              ></b-card-img>
               <b-card-body :title="place.name">
                 <b-card-text>
                   {{ place.formatted_address }}
