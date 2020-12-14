@@ -1,5 +1,8 @@
 <template>
   <div id="listmap">
+    <b-button class="w-100" variant="primary" v-b-toggle.sidebar-footer
+      >Buscar</b-button
+    >
     <b-container fluid>
       <b-row>
         <b-col md>
@@ -13,7 +16,96 @@
         </b-col>
       </b-row>
     </b-container>
-    <b-nav id="map-nav" align="center" pills>
+    <b-sidebar
+      id="sidebar-footer"
+      aria-label="Sidebar with custom footer"
+      backdrop
+      shadow
+    >
+      <div>
+        <b-input
+          placeholder="Busque aqui"
+          v-model.lazy="input_entry"
+          @change="selected = null"
+        >
+        </b-input>
+        <b-dropdown
+          id="dropdown"
+          text="Ordenar por"
+          variant="dark"
+          class="w-100"
+        >
+          <b-dropdown-item>Menor preço</b-dropdown-item>
+          <b-dropdown-item>Maior preço</b-dropdown-item>
+          <b-dropdown-item @click="mostRatedPlaces"
+            >Melhor avaliação</b-dropdown-item
+          >
+          <b-dropdown-item @click="worstRatedPlaces"
+            >Pior avaliação</b-dropdown-item
+          >
+        </b-dropdown>
+        <b-input-group-append>
+          <b-form-select
+            v-model="selected"
+            @change="input_entry = ''"
+            :options="options"
+          ></b-form-select>
+          <b-button variant="outline-primary" type="submit" @click="search"
+            ><i class="fas fa-search"></i
+          ></b-button>
+        </b-input-group-append>
+      </div>
+      <b-alert variant="danger" fade v-show="!foundPlaces" :show="!foundPlaces">
+        Não foi possível encontrar o local desejado.
+      </b-alert>
+      <div>
+        <b-card
+          v-for="(place, i) in foundPlaces"
+          :key="i"
+          class="w-100"
+          no-body
+        >
+          <b-row no-gutters>
+            <b-col md="9">
+              <b-card-body :title="place.name">
+                <b-card-text>
+                  {{ place.formatted_address }}
+                </b-card-text>
+                <b-form-rating
+                  id="rating-5"
+                  v-model="place.rating"
+                  stars="5"
+                  readonly
+                ></b-form-rating>
+                <b-button
+                  href="#gmap"
+                  variant="primary"
+                  @click="
+                    center = place.geometry.location;
+                    thezoom = 16;
+                  "
+                  class="w-100"
+                  >Ver Local</b-button
+                >
+              </b-card-body>
+            </b-col>
+          </b-row>
+        </b-card>
+      </div>
+      <!-- <div class="px-3 py-2">
+        <p>
+          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+          consectetur ac, vestibulum at eros.
+        </p>
+        <b-img
+          src="https://picsum.photos/500/500/?image=54"
+          fluid
+          thumbnail
+        ></b-img>
+      </div> -->
+    </b-sidebar>
+    <!-- <b-nav id="map-nav" align="center" pills>
       <b-nav-item>
         <b-input-group class="w-100 mb-3 mt-2">
           <b-input
@@ -28,7 +120,9 @@
               @change="input_entry = ''"
               :options="options"
             ></b-form-select>
-            <b-button type="submit" @click="search">Procurar</b-button>
+            <b-button type="submit" @click="search"
+              ><i class="fas fa-search"></i
+            ></b-button>
           </b-input-group-append>
         </b-input-group>
       </b-nav-item>
@@ -44,8 +138,8 @@
           >
         </b-dropdown>
       </b-nav-item>
-    </b-nav>
-    <b-container fluid>
+    </b-nav> -->
+    <!-- <b-container fluid>
       <b-row>
         <b-col md>
           <b-alert
@@ -54,7 +148,7 @@
             v-show="!foundPlaces"
             :show="!foundPlaces"
           >
-            Ocorreu um erro
+            Não foi possível encontrar o local desejado.
           </b-alert>
           <div id="cards">
             <b-card
@@ -99,7 +193,7 @@
           </div>
         </b-col>
       </b-row>
-    </b-container>
+    </b-container> -->
   </div>
 </template>
 
