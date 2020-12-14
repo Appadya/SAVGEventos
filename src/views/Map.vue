@@ -1,8 +1,6 @@
 <template>
   <div id="listmap">
-    <b-button class="w-100 primary" v-b-toggle.sidebar-footer
-      >Buscar</b-button
-    >
+    <b-button class="w-100 primary" v-b-toggle.sidebar-footer>Buscar</b-button>
     <b-container fluid>
       <b-row>
         <b-col md>
@@ -18,17 +16,14 @@
     </b-container>
     <b-sidebar id="sidebar-footer" aria-label="Locais" backdrop shadow>
       <div>
+        <!-- <gmap-autocomplete @place_changed="selected = null"> </gmap-autocomplete> -->
         <b-input
           placeholder="Busque aqui"
           v-model.lazy="input_entry"
           @change="selected = null"
         >
         </b-input>
-        <b-dropdown
-          id="dropdown"
-          text="Ordenar por"
-          class="w-100 primary"
-        >
+        <b-dropdown id="dropdown" text="Ordenar por" class="w-100 primary">
           <b-dropdown-item>Menor preço</b-dropdown-item>
           <b-dropdown-item>Maior preço</b-dropdown-item>
           <b-dropdown-item @click="mostRatedPlaces"
