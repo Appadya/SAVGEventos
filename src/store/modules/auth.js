@@ -1,3 +1,5 @@
+import { FirebaseManager } from "../../firebase/firebase";
+
 const state = {
     user: {
         loggedIn: false,
@@ -12,7 +14,10 @@ const state = {
             if (user !== null) {
                 commit('SET_LOGGED_IN', true);
                 if (user) {
-                    commit('SET_USER', { displayName: user.displayName, email: user.email })
+                    FirebaseManager.getUser(user.email, (response, result) => {
+                        result.email = user.email
+                        if(response) commit('SET_USER', result)
+                    });
                 } else {
                     commit('SET_USER', null)
                 }

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Header :title="`Sistema de Apoio ao Visitante em Grandes Eventos`"  :headerSize="`vh-90`" />
     <b-card no-body>
       <b-tabs card>
         <b-tab title="Login" active>
@@ -70,10 +71,14 @@
 </template>
 
 <script>
+import Header from '../components/Header'
 import { FirebaseManager } from "../firebase/firebase";
 
 export default {
   name: "Login",
+  components: {
+    Header
+  },
   data() {
     return {
       form: {
@@ -84,7 +89,6 @@ export default {
       error: null,
     };
   },
-  computed: {},
   methods: {
     submit(isLogin) {
       if (isLogin) {

@@ -1,5 +1,6 @@
 <template>
-  <div id="listmap">
+  <div>
+    <Header :title="`Sistema de Apoio ao Visitante em Grandes Eventos`"  :headerSize="`vh-90`" />
     <b-button class="w-100 primary" v-b-toggle.sidebar-footer>Buscar</b-button>
     <b-container fluid>
       <b-row>
@@ -192,10 +193,14 @@
 </template>
 
 <script>
+import Header from "../components/Header"
 import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Map",
+  components: {
+    Header,
+  },
   data() {
     return {
       center: { lat: 0, lng: 0 },
